@@ -58,8 +58,8 @@ export default function HeroSection() {
               className="w-full h-full bg-cover bg-center flex items-center justify-center relative"
               style={{ backgroundImage: `url(${slide.bg})` }}
             >
-              {/* Full Slider Background Blur */}
-              <div className="absolute inset-0 bg-black/20 backdrop-blur-sm"></div>
+              {/* Light blur and lighter overlay for visibility */}
+              <div className="absolute inset-0 bg-black/10 backdrop-blur-[2px]"></div>
 
               <div className="px-4 sm:px-10 md:px-20 max-w-7xl w-full relative z-10">
                 {activeIndex === index && (

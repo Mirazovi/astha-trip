@@ -49,12 +49,12 @@ const Navbar = () => {
 
           {/* Buttons */}
           <div className="flex gap-2">
-            <button className="border-2 rounded-lg py-1 px-4 border-gray-500">
+           <Link href={'/login'} className="border-2 rounded-lg py-1 px-4 border-gray-500">
               Login
-            </button>
-            <button className="border-2 rounded-lg py-1 px-4 border-gray-500">
+          </Link>
+            <Link href={'/booknow'} className="border-2 rounded-lg py-1 px-4 border-gray-500">
               Book Now
-            </button>
+            </Link>
           </div>
         </div>
       </div>
