@@ -1,6 +1,10 @@
+'use client'
 import React from 'react';
 import { StarIcon } from '../Icons/Icons';
 import Image from 'next/image';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
+import 'swiper/css';
 
 const testimonials = [
   {
@@ -25,7 +29,7 @@ const testimonials = [
 
 export default function Testimonials() {
   return (
-    <section className="py-16 bg-white" id='testimonials'>
+    <section className="py-16 bg-white" id="testimonials">
       <div className="text-center mb-12 max-w-3xl mx-auto px-4">
         <h2 className="text-4xl font-bold text-gray-800 mb-4">Client Testimonials</h2>
         <p className="text-lg text-gray-600">
@@ -33,28 +37,52 @@ export default function Testimonials() {
         </p>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[90%] mx-auto">
+      {/* Mobile: Swiper Carousel */}
+      <div className="block md:hidden w-[90%] mx-auto">
+        <Swiper
+          spaceBetween={20}
+          slidesPerView={1}
+          autoplay={{ delay: 4000, disableOnInteraction: false }}
+          modules={[Autoplay]}
+        >
+          {testimonials.map((testimonial, index) => (
+            <SwiperSlide key={index}>
+              <div className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+                <div className="flex items-center gap-4">
+                  <div className="w-[50px]">
+                    <Image width={100} height={100} src="/user.png" alt="user" />
+                  </div>
+                  <div>
+                    <div className="text-gray-800 font-semibold">{testimonial.name}</div>
+                    <div className="text-gray-500 text-sm">{testimonial.location}</div>
+                  </div>
+                </div>
+                <div className="flex items-center gap-2 text-yellow-500 py-4 justify-center">
+                  <StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon />
+                </div>
+                <hr className="my-4 border-gray-200" />
+                <p className="text-gray-700 text-sm mb-4">{testimonial.quote}</p>
+              </div>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+      </div>
+
+      {/* Desktop & Tablet: Grid Layout */}
+      <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-[90%] mx-auto">
         {testimonials.map((testimonial, index) => (
-          <div
-            key={index}
-            className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition"
-          >
-           
-           <div className='flex items-center gap-4'>
-            <div className='w-[50px]'>
-                <Image width={100} height={100} src={'/user.png'}alt='user'/>
+          <div key={index} className="bg-gray-50 p-6 rounded-xl shadow-md hover:shadow-lg transition">
+            <div className="flex items-center gap-4">
+              <div className="w-[50px]">
+                <Image width={100} height={100} src="/user.png" alt="user" />
+              </div>
+              <div>
+                <div className="text-gray-800 font-semibold">{testimonial.name}</div>
+                <div className="text-gray-500 text-sm">{testimonial.location}</div>
+              </div>
             </div>
-           <div>
-            <div className="text-gray-800 font-semibold">{testimonial.name}</div>
-            <div className="text-gray-500 text-sm">{testimonial.location}</div>
-            </div>
-           </div>
-            <div className='flex items-center gap-2 text-yellow-500 py-4 justify-center'>
-                <StarIcon/>
-                <StarIcon/>
-                <StarIcon/>
-                <StarIcon/>
-                <StarIcon/>
+            <div className="flex items-center gap-2 text-yellow-500 py-4 justify-center">
+              <StarIcon /><StarIcon /><StarIcon /><StarIcon /><StarIcon />
             </div>
             <hr className="my-4 border-gray-200" />
             <p className="text-gray-700 text-sm mb-4">{testimonial.quote}</p>
